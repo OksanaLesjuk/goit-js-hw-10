@@ -15,4 +15,14 @@ body {
 img {
   display: block;
   max-width: 100%;
+  object-fit: cover;
+}
+
+.cat-info {
+  display: flex;
+  gap: 20px;
+}
+
+.temperament-label {
+  font-weight: 600;
 }

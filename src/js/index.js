@@ -36,12 +36,16 @@ function onSelectChange(evt) {
         .then(data => {
             const { breeds, url } = data[0];
             const beerdCard = `<img class="pfoto-cat" width = "300px" src="${url}" alt="${breeds[0].name}">
+            <div class="text-part">
           <h2 class="name-cat">${breeds[0].name}</h2>
-          <p class="deskr-cat">Temperament:${breeds[0].description}</p>
-          <p class="temperament-cat">Temperament:${breeds[0].temperament}</p>`;
+          <p class="deskr-cat">${breeds[0].description}</p>
+          <p class="temperament-cat"><span class="temperament-label">Temperament:</span> ${breeds[0].temperament}</p>  </div>`;
 
             console.log(beerdCard);
             catInfo.innerHTML = beerdCard;
         })
-        .catch()
+        .catch(error => {
+
+            console.error("Помилка запиту:", error.message);
+        });
 }
