@@ -35,11 +35,12 @@ function onSelectChange(evt) {
     fetchCatByBreed(selectedBreedId)
         .then(data => {
             const { breeds, url } = data[0];
-            const beerdCard = `<img class="pfoto-cat" width = "300px" src="${url}" alt="${breeds[0].name}">
+            const { name, temperament, description } = breeds[0];
+            const beerdCard = `<img class="pfoto-cat" width = "300px" src="${url}" alt="${name}">
             <div class="text-part">
-          <h2 class="name-cat">${breeds[0].name}</h2>
-          <p class="deskr-cat">${breeds[0].description}</p>
-          <p class="temperament-cat"><span class="temperament-label">Temperament:</span> ${breeds[0].temperament}</p>  </div>`;
+          <h2 class="name-cat">${name}</h2>
+          <p class="deskr-cat">${description}</p>
+          <p class="temperament-cat"><span class="temperament-label">Temperament:</span> ${temperament}</p>  </div>`;
 
             console.log(beerdCard);
             catInfo.innerHTML = beerdCard;
