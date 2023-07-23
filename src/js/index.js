@@ -1,15 +1,30 @@
 import axios from "axios";
-import { BASE_URL, fetchBreeds, fetchCatByBreed } from "./cat-api"
+import { fetchBreeds, fetchCatByBreed } from "./cat-api"
+import SlimSelect from 'slim-select'
+import 'slim-select/dist/slimselect.css'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+
 
 axios.defaults.headers.common["x-api-key"] = "live_C8fch3W7tmmF8fmpsXU2mdIfjeqC3R8Q3wAY9gs2QZiQFnTO5tNKg722MPHavC8b";
 
 const selectCat = document.querySelector(".breed-select")
 const catInfo = document.querySelector(".cat-info")
+const loader = document.querySelector('.loader')
+const error = document.querySelector('.error')
+
 selectCat.addEventListener("change", onSelectChange)
 
 
-
 function createCatList() {
+
+    // Показуємо лоадер перед початком запиту
+    loader.classList.remove('is-hidden');
+    selectCat.classList.add('is-hidden');
+    error.classList.add('is-hidden')
+
+
+    //обробляємо результат запиту на бекенд (всі породи котів)
     fetchBreeds()
         .then(data => {
 
@@ -18,10 +33,16 @@ function createCatList() {
 
             selectCat.innerHTML = optionsList;
 
+            //стилізуєсо селект з доп бібліотеки SlimSelect 
+            new SlimSelect({
+                select: selectCat
+            })
+            // Отримали дані успішно, ховаємо лоадер показуємо селект
+            loader.classList.add('is-hidden');
+            selectCat.classList.remove('is-hidden')
         })
         .catch(error => {
-
-            console.error("Помилка запиту:", error.message);
+            Notify.failure('Oops! Something went wrong! Try reloading the page!')
         });
 }
 
@@ -30,6 +51,9 @@ createCatList();
 
 
 function onSelectChange(evt) {
+    loader.classList.remove('is-hidden');
+    catInfo.classList.add('is-hidden');
+
     const selectedBreedId = evt.currentTarget.value;
 
     fetchCatByBreed(selectedBreedId)
@@ -42,11 +66,15 @@ function onSelectChange(evt) {
           <p class="deskr-cat">${description}</p>
           <p class="temperament-cat"><span class="temperament-label">Temperament:</span> ${temperament}</p>  </div>`;
 
-            console.log(beerdCard);
             catInfo.innerHTML = beerdCard;
+
+            loader.classList.add('is-hidden');
+            catInfo.classList.remove('is-hidden');
+
+
         })
         .catch(error => {
 
-            console.error("Помилка запиту:", error.message);
+            Notify.failure('Oops! Something went wrong! Try reloading the page!')
         });
 }

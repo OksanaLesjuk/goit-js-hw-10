@@ -29,4 +29,4 @@ function fetchCatByBreed(breedId) {
 
 }
 
-export { BASE_URL, fetchBreeds, fetchCatByBreed };
+export { fetchBreeds, fetchCatByBreed };

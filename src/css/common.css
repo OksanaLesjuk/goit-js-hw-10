@@ -18,6 +18,10 @@ img {
   object-fit: cover;
 }
 
+.breed-select {
+  margin-top: 40px;
+  width: 300px;
+}
 .cat-info {
   display: flex;
   gap: 20px;
@@ -25,4 +29,37 @@ img {
 
 .temperament-label {
   font-weight: 600;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader {
+  width: 200px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  position: relative;
+  background: #fff;
+  box-shadow: -24px 0 #fff, 24px 0 #fff;
+  box-sizing: border-box;
+  animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #fff;
+    box-shadow: -24px 0 #ff3d00, 24px 0 #fff;
+  }
+  66% {
+    background: #ff3d00;
+    box-shadow: -24px 0 #fff, 24px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -24px 0 #fff, 24px 0 #ff3d00;
+  }
 }
