@@ -20,7 +20,7 @@ img {
 
 .breed-select {
   margin-top: 40px;
-  width: 300px;
+  max-width: 300px;
 }
 .cat-info {
   display: flex;
