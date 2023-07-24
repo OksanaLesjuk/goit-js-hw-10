@@ -17,12 +17,10 @@ selectCat.addEventListener("change", onSelectChange)
 
 
 function createCatList() {
-
     // Показуємо лоадер перед початком запиту
     loader.classList.remove('is-hidden');
     selectCat.classList.add('is-hidden');
     error.classList.add('is-hidden')
-
 
     //обробляємо результат запиту на бекенд (всі породи котів)
     fetchBreeds()
