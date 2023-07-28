@@ -31,7 +31,7 @@ function createCatList() {
 
             selectCat.innerHTML = optionsList;
 
-            //стилізуєсо селект з доп бібліотеки SlimSelect 
+            //стилізуємо селект з доп бібліотеки SlimSelect 
             new SlimSelect({
                 select: selectCat
             })
